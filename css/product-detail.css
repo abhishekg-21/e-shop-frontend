@@ -1,0 +1,386 @@
+/* product-detail.css - Specific styles for the product detail page */
+
+/* Main heading on the product detail page (if used as a title outside the card) */
+main h1 {
+  font-size: 2.8em;
+  font-weight: bold;
+  color: #333;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode main h1 {
+  color: #f1f1f1;
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.1);
+}
+
+/* --- Loading and Not Found Messages --- */
+#product-detail-loading,
+#product-not-found {
+  min-height: 400px; /* Ensure these sections take up adequate space */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+body.dark-mode #product-detail-loading,
+body.dark-mode #product-not-found {
+  background-color: #3a3a3a;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+}
+
+#product-detail-loading .spinner-border {
+  width: 4rem;
+  height: 4rem;
+  color: #007bff;
+}
+
+body.dark-mode #product-detail-loading .spinner-border {
+  color: #87ceeb;
+}
+
+#product-detail-loading p,
+#product-not-found p {
+  font-size: 1.2em;
+  color: #6c757d;
+  margin-top: 15px;
+}
+
+body.dark-mode #product-detail-loading p,
+body.dark-mode #product-not-found p {
+  color: #bbb;
+}
+
+#product-not-found i {
+  color: #ffc107; /* Warning yellow */
+  margin-bottom: 25px;
+}
+
+#product-not-found .lead {
+  font-size: 1.5em;
+  font-weight: 500;
+  color: #333;
+}
+
+body.dark-mode #product-not-found .lead {
+  color: #f1f1f1;
+}
+
+/* --- Product Detail Container --- */
+#product-detail-container {
+  /* Inherits card styles from Bootstrap, enhancing here */
+  background-color: #ffffff;
+  border: none; /* Remove default Bootstrap border */
+  border-radius: 15px; /* More rounded corners */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12); /* Stronger shadow */
+  transition: all 0.3s ease;
+}
+
+body.dark-mode #product-detail-container {
+  background-color: #333333;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Message area within the product detail container */
+#product-message {
+  margin-bottom: 20px; /* Space below alert message */
+  padding: 15px;
+  border-radius: 8px;
+}
+
+/* Product Image Gallery */
+.product-image-main img {
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  height: auto; /* Ensure aspect ratio */
+  display: block; /* Remove extra space below image */
+  object-fit: contain; /* Ensure image fits within bounds */
+}
+
+body.dark-mode .product-image-main img {
+  border-color: #555;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Optional: Thumbnail gallery */
+.product-thumbnails img {
+  width: 90px;
+  height: 60px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.product-thumbnails img:hover,
+.product-thumbnails img.active {
+  border-color: #007bff;
+}
+
+body.dark-mode .product-thumbnails img:hover,
+body.dark-mode .product-thumbnails img.active {
+  border-color: #87ceeb;
+}
+
+/* --- Product Information Column --- */
+.product-info-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-name {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+body.dark-mode .product-name {
+  color: #f1f1f1;
+}
+
+.product-category {
+  font-size: 1.1em;
+  color: #6c757d;
+  margin-bottom: 15px;
+}
+
+body.dark-mode .product-category {
+  color: #adb5bd;
+}
+
+.product-price {
+  font-size: 3.5em; /* Large, prominent price */
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 25px;
+}
+
+body.dark-mode .product-price {
+  color: #87ceeb;
+}
+
+.product-description {
+  font-size: 1.1em;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+body.dark-mode .product-description {
+  color: #ccc;
+}
+
+.product-stock-status p {
+  font-size: 1.05em;
+  color: #444;
+  margin-bottom: 25px;
+}
+
+body.dark-mode .product-stock-status p {
+  color: #ddd;
+}
+
+.product-stock-status i {
+  color: #28a745; /* Green checkmark or box icon */
+}
+
+body.dark-mode .product-stock-status i {
+  color: #5cb85c;
+}
+
+/* Quantity Selector */
+.quantity-selector .form-label {
+  font-weight: 600;
+  color: #555;
+  min-width: 80px; /* Ensure label has enough space */
+}
+
+body.dark-mode .quantity-selector .form-label {
+  color: #bbb;
+}
+
+.quantity-selector .input-group .form-control {
+  border-radius: 0; /* Remove border-radius on input within group */
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+body.dark-mode .quantity-selector .input-group .form-control {
+  background-color: #4a4a4a;
+  color: #f1f1f1;
+}
+
+.quantity-selector .input-group .btn {
+  border-radius: 5px; /* Apply border-radius to buttons in group */
+  background-color: #f0f0f0;
+  border-color: #ddd;
+  color: #555;
+  transition: all 0.2s ease;
+}
+
+body.dark-mode .quantity-selector .input-group .btn {
+  background-color: #5a5a5a;
+  border-color: #777;
+  color: #f1f1f1;
+}
+
+.quantity-selector .input-group .btn:hover {
+  background-color: #e2e6ea;
+  border-color: #dae0e5;
+  color: #333;
+}
+
+body.dark-mode .quantity-selector .input-group .btn:hover {
+  background-color: #6a6a6a;
+  border-color: #888;
+  color: #fff;
+}
+
+.quantity-selector #quantity-minus-btn {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.quantity-selector #quantity-plus-btn {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+/* Add to Cart Button */
+#add-to-cart-btn {
+  background-color: #28a745; /* Green for Add to Cart */
+  border-color: #28a745;
+  font-size: 1.3em;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2);
+}
+
+#add-to-cart-btn:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.3);
+}
+
+body.dark-mode #add-to-cart-btn {
+  background-color: #5cb85c;
+  border-color: #5cb85c;
+  color: #343a40;
+  box-shadow: 0 4px 15px rgba(92, 184, 92, 0.3);
+}
+
+body.dark-mode #add-to-cart-btn:hover {
+  background-color: #4cae4c;
+  border-color: #4cae4c;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(92, 184, 92, 0.4);
+}
+
+/* Other actions button (e.g., Add to Wishlist) */
+.product-info-col .btn-outline-primary {
+  border-color: #007bff;
+  color: #007bff;
+  font-size: 1.1em;
+  font-weight: 500;
+  border-radius: 50px; /* Pill shape */
+  padding: 12px 25px;
+  transition: all 0.3s ease;
+}
+
+.product-info-col .btn-outline-primary:hover {
+  background-color: #007bff;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2);
+}
+
+body.dark-mode .product-info-col .btn-outline-primary {
+  border-color: #87ceeb;
+  color: #87ceeb;
+}
+
+body.dark-mode .product-info-col .btn-outline-primary:hover {
+  background-color: #87ceeb;
+  color: #343a40;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 991.98px) {
+  #product-detail-container {
+    padding: 30px; /* Reduce overall padding on medium screens */
+  }
+
+  .product-name {
+    font-size: 2.2em; /* Adjust heading size */
+  }
+
+  .product-price {
+    font-size: 3em; /* Adjust price size */
+  }
+
+  .product-image-main img {
+    max-height: 400px; /* Constrain image height on medium screens */
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 767.98px) {
+  #product-detail-container {
+    padding: 20px; /* Further reduce padding on small screens */
+  }
+
+  .product-name {
+    font-size: 2em; /* Smaller heading */
+    text-align: center;
+  }
+
+  .product-category,
+  .product-description,
+  .product-stock-status p {
+    text-align: center; /* Center align text below image */
+  }
+
+  .product-price {
+    font-size: 2.8em; /* Smaller price */
+    text-align: center;
+  }
+
+  .quantity-selector {
+    justify-content: center; /* Center quantity selector */
+  }
+
+  #add-to-cart-btn,
+  .product-info-col .btn-outline-primary {
+    font-size: 1.1em;
+    padding: 10px 20px;
+  }
+
+  .product-image-main img {
+    max-height: 300px; /* Even smaller image height on mobile */
+  }
+}
+
+@media (max-width: 575.98px) {
+  #product-detail-container {
+    padding: 15px;
+    border-radius: 10px;
+  }
+  .product-image-main img {
+    max-height: 250px;
+  }
+  .product-name {
+    font-size: 1.8em;
+  }
+  .product-price {
+    font-size: 2.5em;
+  }
+}

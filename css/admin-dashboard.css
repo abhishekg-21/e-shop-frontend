@@ -1,0 +1,280 @@
+/* admin-dashboard.css - Specific styles for the Admin Dashboard page */
+
+/* Main heading on the admin dashboard */
+main h1 {
+  font-size: 2.8em;
+  font-weight: bold;
+  color: #333;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode main h1 {
+  color: #f1f1f1;
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.1);
+}
+
+/* Dashboard Title (e.g., "Welcome, Admin!") */
+.dashboard-title {
+  color: var(
+    --text-color-light
+  ); /* Inherits from global, ensure specific color */
+}
+
+body.dark-mode .dashboard-title {
+  color: var(--text-color-dark);
+}
+
+.dashboard-title span#admin-name {
+  color: var(--primary-color); /* Highlight admin name */
+}
+
+body.dark-mode .dashboard-title span#admin-name {
+  color: var(--primary-color-dark-accent);
+}
+
+/* --- Summary Cards Section --- */
+.dashboard-summary .summary-card {
+  background-color: var(--card-bg-light);
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease;
+  height: 100%; /* Ensure all cards in a row are same height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Push link to bottom */
+}
+
+body.dark-mode .dashboard-summary .summary-card {
+  background-color: var(--card-bg-dark);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+.dashboard-summary .summary-card:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-mode .dashboard-summary .summary-card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.summary-card h5 {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--text-color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+body.dark-mode .summary-card h5 {
+  color: var(--text-color-muted-dark);
+}
+
+.summary-card .summary-value {
+  font-size: 3.5em; /* Large number for emphasis */
+  font-weight: bold;
+  margin-top: 5px;
+  color: var(--text-color-light);
+}
+
+body.dark-mode .summary-card .summary-value {
+  color: var(--text-color-dark);
+}
+
+.summary-card i.fa-3x {
+  opacity: 0.6; /* Slightly faded icons */
+  font-size: 3em; /* Ensure icon size */
+}
+
+/* Specific icon colors */
+.summary-card i.text-primary {
+  color: var(--primary-color) !important;
+}
+body.dark-mode .summary-card i.text-primary {
+  color: var(--primary-color-dark-accent) !important;
+}
+
+.summary-card i.text-success {
+  color: var(--success-color) !important;
+}
+body.dark-mode .summary-card i.text-success {
+  color: var(--success-color-dark-accent) !important;
+}
+
+.summary-card i.text-warning {
+  color: var(--warning-color) !important;
+}
+body.dark-mode .summary-card i.text-warning {
+  color: #ffeb3b !important;
+} /* A bit brighter yellow for dark mode */
+
+.summary-card i.text-info {
+  color: var(--info-color) !important;
+}
+body.dark-mode .summary-card i.text-info {
+  color: #81d4fa !important;
+} /* Lighter info blue for dark mode */
+
+.summary-card .card-link {
+  font-size: 0.95em;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--primary-color);
+  margin-top: 15px; /* Space between value and link */
+  display: block; /* Make it a block for better spacing */
+  text-align: right; /* Align link to the right */
+}
+
+body.dark-mode .summary-card .card-link {
+  color: var(--primary-color-dark-accent);
+}
+
+.summary-card .card-link:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+body.dark-mode .summary-card .card-link:hover {
+  color: #6fb2da;
+}
+
+/* --- Management Links Section --- */
+.dashboard-links .management-card {
+  background-color: var(--card-bg-light);
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease;
+  height: 100%; /* Ensure all cards in a row are same height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Center content vertically and horizontally */
+}
+
+body.dark-mode .dashboard-links .management-card {
+  background-color: var(--card-bg-dark);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+.dashboard-links .management-card:hover {
+  transform: translateY(-8px); /* More pronounced lift on hover */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-mode .dashboard-links .management-card:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.management-card .card-body {
+  padding: 25px; /* Generous padding */
+}
+
+.management-card i.fa-4x {
+  font-size: 4em; /* Large icons for management links */
+  color: var(--secondary-color); /* Muted secondary color */
+  margin-bottom: 20px;
+}
+
+body.dark-mode .management-card i.fa-4x {
+  color: var(--secondary-color-dark-accent);
+}
+
+.management-card .card-title {
+  font-size: 1.6em;
+  font-weight: bold;
+  color: var(--text-color-light);
+  margin-bottom: 10px;
+}
+
+body.dark-mode .management-card .card-title {
+  color: var(--text-color-dark);
+}
+
+.management-card .card-text {
+  font-size: 0.95em;
+  color: var(--text-color-muted);
+}
+
+body.dark-mode .management-card .card-text {
+  color: var(--text-color-muted-dark);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991.98px) {
+  /* Tablets and smaller laptops */
+  main h1 {
+    font-size: 2.5em;
+  }
+  .dashboard-summary .summary-card .summary-value {
+    font-size: 3em;
+  }
+  .dashboard-summary .summary-card i.fa-3x {
+    font-size: 2.5em;
+  }
+  .management-card i.fa-4x {
+    font-size: 3.5em;
+  }
+  .management-card .card-title {
+    font-size: 1.4em;
+  }
+}
+
+@media (max-width: 767.98px) {
+  /* Small devices (phones) */
+  main h1 {
+    font-size: 2em;
+    text-align: center;
+  }
+  .dashboard-title {
+    flex-direction: column; /* Stack welcome message and logout button */
+    align-items: center;
+    gap: 15px; /* Space between stacked items */
+  }
+  .dashboard-summary .summary-card {
+    padding: 25px; /* Reduce padding on cards */
+  }
+  .summary-card .summary-value {
+    font-size: 2.8em;
+  }
+  .summary-card i.fa-3x {
+    font-size: 2.2em;
+  }
+  .management-card .card-body {
+    padding: 20px;
+  }
+  .management-card i.fa-4x {
+    font-size: 3em;
+  }
+  .management-card .card-title {
+    font-size: 1.3em;
+  }
+  .management-card .card-text {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 575.98px) {
+  /* Extra small devices */
+  .dashboard-summary .summary-card {
+    padding: 20px;
+  }
+  .summary-card h5 {
+    font-size: 1em;
+  }
+  .summary-card .summary-value {
+    font-size: 2.5em;
+  }
+  .management-card .card-body {
+    padding: 15px;
+  }
+  .management-card i.fa-4x {
+    font-size: 2.5em;
+  }
+  .management-card .card-title {
+    font-size: 1.2em;
+  }
+}

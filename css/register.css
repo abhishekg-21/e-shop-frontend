@@ -1,0 +1,94 @@
+/* register.css - Specific styles for the register page (builds on login.css) */
+
+/* If you need specific adjustments to the container or card for register.html
+   that are different from login.css, define them here.
+   Otherwise, these selectors will simply inherit from login.css.
+*/
+.register-container {
+  /* Example: If register page needs a slightly different background or spacing */
+  /* background-color: #e9f0f9; */
+}
+
+body.dark-mode .register-container {
+  /* background-color: #1a1a1a; */
+}
+
+.register-card {
+  /* Example: If register card needs different max-width or shadow */
+  /* max-width: 500px; */
+}
+
+/* Specific styling for the 'Register' button (btn-success) */
+.btn-success {
+  background-color: #28a745; /* Green color for success */
+  border-color: #28a745;
+  font-size: 1.2em;
+  padding: 12px 25px;
+  border-radius: 50px; /* Pill shape */
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2); /* Green shadow */
+}
+
+.btn-success:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+  transform: translateY(-2px); /* Lift button on hover */
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.3);
+}
+
+/* Dark mode for the success button */
+body.dark-mode .btn-success {
+  background-color: #5cb85c; /* Lighter green for dark mode */
+  border-color: #5cb85c;
+  color: #343a40; /* Dark text for light button in dark mode */
+  box-shadow: 0 4px 15px rgba(92, 184, 92, 0.3);
+}
+
+body.dark-mode .btn-success:hover {
+  background-color: #4cae4c;
+  border-color: #4cae4c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(92, 184, 92, 0.4);
+}
+
+/* Styling for the password help text */
+.form-text {
+  font-size: 0.85em;
+  color: #6c757d; /* Muted text color */
+  margin-top: 5px; /* Space above the help text */
+}
+
+body.dark-mode .form-text {
+  color: #adb5bd; /* Lighter muted text color for dark mode */
+}
+
+/* The 'Login Here' button (btn-outline-primary)
+   This will largely inherit from Bootstrap's default .btn-outline-primary
+   and potentially global overrides in style.css or login.css.
+   If you need specific overrides, define them here.
+*/
+.btn-outline-primary {
+  /* Example: Tweak padding or font-size if needed specifically for register page */
+  /* padding: 10px 20px; */
+  /* font-size: 1em; */
+}
+
+/* Responsive adjustments (can be copied/modified from login.css if needed specific overrides) */
+@media (max-width: 575.98px) {
+  .register-card {
+    padding: 25px; /* Reduce padding on small screens */
+    margin: 20px; /* Add margin to prevent sticking to edges */
+  }
+
+  .register-card h2 {
+    font-size: 1.8em; /* Smaller heading on small screens */
+  }
+
+  .btn-success,
+  .btn-outline-primary {
+    font-size: 1.1em;
+    padding: 10px 20px;
+  }
+}

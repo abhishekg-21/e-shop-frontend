@@ -1,0 +1,210 @@
+/* login.css - Specific styles for the login and register pages */
+
+/* Main container for the login/register page */
+.login-container {
+  min-height: calc(
+    100vh - var(--header-height, 80px) - var(--footer-height, 60px)
+  ); /* Adjust height to fill space between header and footer */
+  background-color: #f0f2f5; /* Light grey background */
+  padding: 20px;
+  /* Using flexbox utilities from Bootstrap in HTML for centering */
+}
+
+/* Dark mode for the login/register container */
+body.dark-mode .login-container {
+  background-color: #222222; /* Dark background */
+}
+
+/* The card that holds the login/register form */
+.login-card {
+  max-width: 450px; /* Max width for the card */
+  width: 100%; /* Ensure it takes full width up to max-width */
+  padding: 40px;
+  border-radius: 12px; /* More pronounced rounded corners */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Stronger shadow for depth */
+  border: none; /* Remove default Bootstrap card border */
+  transition: all 0.3s ease; /* Smooth transition for dark mode/hover effects */
+}
+
+/* Dark mode for the login/register card */
+body.dark-mode .login-card {
+  background-color: #333333; /* Dark card background */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); /* Stronger dark shadow */
+}
+
+/* Heading for login/register form */
+.login-card h2 {
+  font-size: 2em;
+  font-weight: bold;
+  color: #333;
+}
+
+body.dark-mode .login-card h2 {
+  color: #f1f1f1; /* Light text for dark mode */
+}
+
+/* Form group styling */
+.form-group {
+  text-align: left; /* Align labels and inputs to the left */
+}
+
+/* Labels for form inputs */
+.form-label {
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 8px; /* Space between label and input */
+}
+
+body.dark-mode .form-label {
+  color: #bbb;
+}
+
+/* Input field styling */
+.form-control {
+  border-radius: 8px; /* Rounded input fields */
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  background-color: #fcfcfc; /* Slightly off-white for inputs */
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+body.dark-mode .form-control {
+  background-color: #4a4a4a;
+  border-color: #555;
+  color: #f1f1f1;
+}
+
+.form-control:focus {
+  border-color: #007bff; /* Primary blue border on focus */
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25); /* Bootstrap-like shadow */
+  background-color: #fff; /* White background on focus */
+}
+
+body.dark-mode .form-control:focus {
+  border-color: #87ceeb; /* Lighter blue on focus for dark mode */
+  box-shadow: 0 0 0 0.25rem rgba(135, 206, 235, 0.25);
+  background-color: #3a3a3a;
+}
+
+/* Primary button styling (for Login button) */
+.btn-primary {
+  background-color: #007bff; /* Primary blue */
+  border-color: #007bff;
+  font-size: 1.2em;
+  padding: 12px 25px;
+  border-radius: 50px; /* Pill shape */
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+  transform: translateY(-2px); /* Lift button on hover */
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
+}
+
+/* Dark mode for primary button */
+body.dark-mode .btn-primary {
+  background-color: #87ceeb; /* Lighter blue for dark mode */
+  border-color: #87ceeb;
+  color: #343a40; /* Dark text for light button in dark mode */
+  box-shadow: 0 4px 15px rgba(135, 206, 235, 0.3);
+}
+
+body.dark-mode .btn-primary:hover {
+  background-color: #6fb2da;
+  border-color: #6fb2da;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(135, 206, 235, 0.4);
+}
+
+/* Forgot password link */
+.forgot-password {
+  font-size: 0.9em;
+  color: #007bff;
+  display: block; /* Make it a block element to center or give margin */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+body.dark-mode .forgot-password {
+  color: #87ceeb;
+}
+
+.forgot-password:hover {
+  text-decoration: underline !important; /* Ensure underline on hover */
+  color: #0056b3;
+}
+
+body.dark-mode .forgot-password:hover {
+  color: #6fb2da;
+}
+
+/* Horizontal rule separator */
+hr {
+  margin: 30px 0;
+  border-top: 1px solid #eee;
+}
+
+body.dark-mode hr {
+  border-top: 1px solid #555;
+}
+
+/* Text for "Don't have an account?" */
+.login-card p.text-center {
+  color: #6c757d;
+}
+
+body.dark-mode .login-card p.text-center {
+  color: #adb5bd;
+}
+
+/* Secondary button styling (for Register Here link) */
+.btn-outline-secondary {
+  border-color: #6c757d;
+  color: #6c757d;
+  font-size: 1.1em;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #6c757d;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(108, 117, 125, 0.2);
+}
+
+/* Dark mode for secondary button */
+body.dark-mode .btn-outline-secondary {
+  border-color: #adb5bd;
+  color: #adb5bd;
+}
+
+body.dark-mode .btn-outline-secondary:hover {
+  background-color: #adb5bd;
+  color: #343a40; /* Dark text for light button in dark mode */
+}
+
+/* Responsive adjustments */
+@media (max-width: 575.98px) {
+  .login-card {
+    padding: 25px; /* Reduce padding on small screens */
+    margin: 20px; /* Add margin to prevent sticking to edges */
+  }
+
+  .login-card h2 {
+    font-size: 1.8em; /* Smaller heading on small screens */
+  }
+
+  .btn-primary,
+  .btn-outline-secondary {
+    font-size: 1.1em;
+    padding: 10px 20px;
+  }
+}

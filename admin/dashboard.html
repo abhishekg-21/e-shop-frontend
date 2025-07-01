@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+   
+  <head>
+       
+    <meta charset="UTF-8" />
+       
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+       
+    <title>Admin Dashboard - E-Shop</title>
+       
+    <!-- General styles for the entire site (includes dark mode logic) -->
+       
+    <link rel="stylesheet" href="../css/style.css" />
+       
+    <!-- Specific styles for the admin dashboard -->
+       
+    <link rel="stylesheet" href="../css/admin-dashboard.css" />
+
+       
+    <!-- Bootstrap CSS CDN for responsive grid and basic components -->
+       
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+       
+    <!-- Font Awesome for icons -->
+       
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      xintegrity="sha512-..."
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+     
+  </head>
+   
+  <body>
+       
+    <!-- Header Section (consistent across site) -->
+       
+    <header class="site-header">
+           
+      <div class="container header-inner">
+               
+        <h1 class="logo">🛒 E-Shop Admin</h1>
+               
+        <nav class="main-nav">
+                    <a href="../index.html">Home</a>          
+          <a href="../products.html">Products</a>          
+          <a href="../cart.html">Cart</a>          
+          <a href="dashboard.html" class="active">Admin Panel</a>          
+          <!-- This link will dynamically change to "Logout" if logged in -->
+                    <a href="../login.html" id="auth-link">Login</a>        
+        </nav>
+               
+        <!-- Theme Toggle Button -->
+               
+        <button id="theme-toggle" class="theme-button" title="Toggle Dark Mode">
+                    🌓        
+        </button>
+             
+      </div>
+         
+    </header>
+
+       
+    <!-- Main Content - Admin Dashboard -->
+       
+    <main class="container my-5">
+           
+      <div class="d-flex justify-content-between align-items-center mb-4">
+               
+        <h1 class="dashboard-title">
+                    Welcome, <span id="admin-name">Admin</span>!        
+        </h1>
+               
+        <button class="btn btn-outline-secondary" id="logout-btn">
+                    <i class="fas fa-sign-out-alt me-2"></i>Logout        
+        </button>
+             
+      </div>
+
+           
+      <section class="dashboard-summary row mb-5 g-4">
+               
+        <!-- Total Users Summary Card -->
+               
+        <div class="col-lg-3 col-md-6">
+                   
+          <div class="summary-card card p-4 shadow-sm">
+                       
+            <div class="d-flex justify-content-between align-items-center">
+                           
+              <div>
+                               
+                <h5 class="text-muted mb-2">Total Users</h5>
+                               
+                <p class="summary-value display-5" id="total-users">0</p>
+                             
+              </div>
+                            <i class="fas fa-users fa-3x text-primary"></i>    
+                     
+            </div>
+                       
+            <a href="admin-users.html" class="card-link mt-3"
+              >View All Users <i class="fas fa-arrow-circle-right"></i
+            ></a>
+                     
+          </div>
+                 
+        </div>
+               
+        <!-- Total Products Summary Card -->
+               
+        <div class="col-lg-3 col-md-6">
+                   
+          <div class="summary-card card p-4 shadow-sm">
+                       
+            <div class="d-flex justify-content-between align-items-center">
+                           
+              <div>
+                               
+                <h5 class="text-muted mb-2">Total Products</h5>
+                               
+                <p class="summary-value display-5" id="total-products">0</p>
+                             
+              </div>
+                            <i class="fas fa-boxes fa-3x text-success"></i>    
+                     
+            </div>
+                       
+            <a href="admin-products.html" class="card-link mt-3"
+              >Manage Products <i class="fas fa-arrow-circle-right"></i
+            ></a>
+                     
+          </div>
+                 
+        </div>
+               
+        <!-- Pending Orders Summary Card -->
+               
+        <div class="col-lg-3 col-md-6">
+                   
+          <div class="summary-card card p-4 shadow-sm">
+                       
+            <div class="d-flex justify-content-between align-items-center">
+                           
+              <div>
+                               
+                <h5 class="text-muted mb-2">Pending Orders</h5>
+                               
+                <p class="summary-value display-5" id="pending-orders">0</p>
+                             
+              </div>
+                            <i class="fas fa-clock fa-3x text-warning"></i>    
+                     
+            </div>
+                       
+            <a href="admin-orders.html" class="card-link mt-3"
+              >View Pending Orders <i class="fas fa-arrow-circle-right"></i
+            ></a>
+                     
+          </div>
+                 
+        </div>
+               
+        <!-- Total Revenue Summary Card -->
+               
+        <div class="col-lg-3 col-md-6">
+                   
+          <div class="summary-card card p-4 shadow-sm">
+                       
+            <div class="d-flex justify-content-between align-items-center">
+                           
+              <div>
+                               
+                <h5 class="text-muted mb-2">Total Revenue</h5>
+                               
+                <p class="summary-value display-5" id="total-revenue">$0.00</p>
+                             
+              </div>
+                            <i class="fas fa-dollar-sign fa-3x text-info"></i>  
+                       
+            </div>
+                       
+            <a href="admin-orders.html" class="card-link mt-3"
+              >View Sales Reports <i class="fas fa-arrow-circle-right"></i
+            ></a>
+                     
+          </div>
+                 
+        </div>
+             
+      </section>
+
+           
+      <section class="dashboard-links row g-4">
+               
+        <!-- User Management Link Card -->
+               
+        <div class="col-lg-4 col-md-6">
+                   
+          <a
+            href="admin-users.html"
+            class="management-card card p-4 shadow-sm text-decoration-none"
+          >
+                       
+            <div class="card-body text-center">
+                           
+              <i class="fas fa-user-cog fa-4x mb-3 text-secondary"></i>        
+                   
+              <h4 class="card-title mb-0">User Management</h4>
+                           
+              <p class="card-text text-muted">
+                                Manage user accounts and roles.              
+              </p>
+                         
+            </div>
+                     
+          </a>
+                 
+        </div>
+               
+        <!-- Product Catalog Link Card -->
+               
+        <div class="col-lg-4 col-md-6">
+                   
+          <a
+            href="admin-products.html"
+            class="management-card card p-4 shadow-sm text-decoration-none"
+          >
+                       
+            <div class="card-body text-center">
+                           
+              <i class="fas fa-box-open fa-4x mb-3 text-secondary"></i>        
+                   
+              <h4 class="card-title mb-0">Product Catalog</h4>
+                           
+              <p class="card-text text-muted">Add, edit, or remove products.</p>
+                         
+            </div>
+                     
+          </a>
+                 
+        </div>
+               
+        <!-- Order Management Link Card -->
+               
+        <div class="col-lg-4 col-md-6">
+                   
+          <a
+            href="admin-orders.html"
+            class="management-card card p-4 shadow-sm text-decoration-none"
+          >
+                       
+            <div class="card-body text-center">
+                           
+              <i class="fas fa-clipboard-list fa-4x mb-3 text-secondary"></i>  
+                         
+              <h4 class="card-title mb-0">Order Management</h4>
+                           
+              <p class="card-text text-muted">
+                                Track and update customer orders.              
+              </p>
+                         
+            </div>
+                     
+          </a>
+                   
+        </div>
+               
+        <!-- Site Settings Link Card (Placeholder) -->
+               
+        <div class="col-lg-4 col-md-6">
+                   
+          <a
+            href="#"
+            class="management-card card p-4 shadow-sm text-decoration-none"
+          >
+                       
+            <div class="card-body text-center">
+                           
+              <i class="fas fa-cogs fa-4x mb-3 text-secondary"></i>            
+               
+              <h4 class="card-title mb-0">Site Settings</h4>
+                           
+              <p class="card-text text-muted">
+                                Configure general site options.              
+              </p>
+                         
+            </div>
+                     
+          </a>
+                 
+        </div>
+             
+      </section>
+         
+    </main>
+
+       
+    <!-- Footer Section (consistent across site) -->
+       
+    <footer class="bg-dark text-white text-center py-4">
+           
+      <div class="container">
+               
+        <p>&copy; 2024 E-Shop. All rights reserved.</p>
+               
+        <div class="social-links mt-3">
+                   
+          <a href="#" class="text-white mx-2"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+                   
+          <a href="#" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+                   
+          <a href="#" class="text-white mx-2"
+            ><i class="fab fa-instagram"></i
+          ></a>
+                 
+        </div>
+               
+      </div>
+           
+    </footer>
+
+       
+    <!-- Bootstrap JS Bundle (includes Popper.js) -->
+       
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      xintegrity="sha384-..."
+      crossorigin="anonymous"
+    ></script>
+       
+    <!-- Custom site-wide JavaScript (e.g., theme toggle) -->
+       
+    <script src="../js/main.js"></script>
+       
+    <!-- Admin Dashboard specific JavaScript -->
+       
+    <script>
+      // src/main/resources/static/admin/dashboard.html (inline script)
+      document.addEventListener("DOMContentLoaded", async () => {
+        const adminNameSpan = document.getElementById("admin-name");
+        const logoutBtn = document.getElementById("logout-btn");
+        const authLink = document.getElementById("auth-link"); // From header nav
+
+        const API_BASE_URL = "/api"; // FIX: Corrected API endpoints to match backend @RequestMapping("/api/auth") and @GetMapping annotations
+        const VALIDATE_ADMIN_URL = `${API_BASE_URL}/auth/admin/validate`;
+        const ADMIN_DASHBOARD_STATS_URL = `${API_BASE_URL}/auth/admin/dashboard-stats`;
+        /**
+         * Retrieves the JWT token from local storage.
+         * @returns {string|null} The JWT token or null if not found or is an empty string.
+         */
+
+        function getAuthToken() {
+          const token = localStorage.getItem("jwt_token"); // Check if token exists, is a string, and is not an empty string after trimming whitespace
+          if (token && typeof token === "string" && token.trim() !== "") {
+            return token;
+          }
+          return null; // Return null if the token is effectively missing or empty
+        }
+        /**
+         * Redirects the user to the login page after an optional alert.
+         * Also clears any invalid JWT token from local storage.
+         * @param {string} message Optional message to display before redirecting.
+         */
+
+        function redirectToLogin(
+          message = "Session expired or unauthorized. Please log in."
+        ) {
+          alert(message); // Using alert, but custom modal is recommended for better UX
+          localStorage.removeItem("jwt_token"); // Clear invalid token
+          window.location.href = "../login.html"; // Redirect to login page
+        }
+        /**
+         * Checks if the current user is an authenticated administrator.
+         * @returns {boolean} True if the user is an admin, false otherwise.
+         */
+
+        const checkAdminAccess = async () => {
+          const token = getAuthToken();
+          if (!token) {
+            redirectToLogin(
+              "Access Denied! Please log in as an administrator."
+            );
+            return false;
+          }
+
+          try {
+            console.log(
+              "Attempting to validate admin access to:",
+              VALIDATE_ADMIN_URL
+            ); // DEBUG
+            const response = await fetch(VALIDATE_ADMIN_URL, {
+              method: "GET",
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
+
+            console.log("Admin validation response status:", response.status); // DEBUG
+
+            if (response.ok) {
+              const userData = await response.json(); // Backend sends back user details including name and roles
+              console.log("Admin validation successful. User data:", userData); // DEBUG
+              if (userData.roles && userData.roles.includes("ROLE_ADMIN")) {
+                adminNameSpan.textContent = userData.name || "Admin"; // Set admin name // Update header auth link state (handled by main.js, but re-confirm here)
+                if (authLink) {
+                  authLink.textContent = "Logout";
+                  authLink.href = "#"; // Make logout link non-navigable directly // Ensure the main.js logout listener is attached or re-attached
+                  if (!authLink._logoutListener) {
+                    // Check if main.js already attached it
+                    const newListener = (e) => {
+                      // Define and store a new listener
+                      e.preventDefault();
+                      localStorage.removeItem("jwt_token");
+                      alert("You have been logged out.");
+                      window.location.href = "../login.html";
+                    };
+                    authLink.addEventListener("click", newListener);
+                    authLink._logoutListener = newListener; // Store reference
+                  }
+                }
+                return true;
+              } else {
+                console.warn(
+                  "Admin validation successful, but user does not have ROLE_ADMIN:",
+                  userData
+                ); // DEBUG
+              }
+            } // If response not ok (e.g., 401, 403, 404), or not admin role after parsing
+            redirectToLogin(
+              "Access Denied! You do not have administrator privileges."
+            );
+            return false;
+          } catch (error) {
+            console.error("Error validating admin access:", error); // DEBUG
+            // Attempt to read response text for more details if it's a network error or non-JSON
+            if (response && !response.ok) {
+              // Check if response object exists and is not ok
+              try {
+                const errorText = await response.text();
+                console.error("Raw error response text:", errorText);
+              } catch (textError) {
+                console.error(
+                  "Could not read response as text either:",
+                  textError
+                );
+              }
+            } else if (
+              error instanceof TypeError &&
+              error.message.includes("Failed to fetch")
+            ) {
+              console.error(
+                "Possible network error or CORS issue. Check server status."
+              );
+            } else if (
+              error instanceof SyntaxError &&
+              error.message.includes("JSON")
+            ) {
+              console.error(
+                "Response was not valid JSON. Backend might be returning HTML/plain text for error."
+              );
+            }
+            redirectToLogin(
+              "Session verification failed. Please log in again."
+            );
+            return false;
+          }
+        }; // Execute access check
+
+        const isAdmin = await checkAdminAccess();
+        if (!isAdmin) {
+          return; // Stop execution if not admin
+        } // --- Logout Functionality --- // This handles the dedicated logout button on the dashboard
+
+        logoutBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          localStorage.removeItem("jwt_token"); // Clear token
+          alert("You have been logged out."); // Using alert, but custom modal is recommended
+          window.location.href = "../login.html"; // Redirect to login page
+        }); // --- Fetch Summary Statistics --- // In a real application, you'd make AJAX calls to your Spring Boot backend // to fetch these numbers dynamically.
+
+        const fetchDashboardStats = async () => {
+          const token = getAuthToken();
+          if (!token) return; // Should already be checked by checkAdminAccess
+
+          try {
+            console.log(
+              "Attempting to fetch dashboard stats from:",
+              ADMIN_DASHBOARD_STATS_URL
+            ); // DEBUG
+            const response = await fetch(ADMIN_DASHBOARD_STATS_URL, {
+              method: "GET",
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+              },
+            });
+
+            console.log("Dashboard stats response status:", response.status); // DEBUG
+
+            if (!response.ok) {
+              const errorData = await response.json(); // This might fail if response is not JSON
+              throw new Error(
+                errorData.message || "Failed to fetch dashboard stats."
+              );
+            }
+
+            const stats = await response.json();
+            console.log("Dashboard stats received:", stats); // DEBUG
+            document.getElementById("total-users").textContent =
+              stats.totalUsers !== undefined ? stats.totalUsers : "N/A";
+            document.getElementById("total-products").textContent =
+              stats.totalProducts !== undefined ? stats.totalProducts : "N/A";
+            document.getElementById("pending-orders").textContent =
+              stats.pendingOrders !== undefined ? stats.pendingOrders : "N/A";
+            document.getElementById("total-revenue").textContent =
+              stats.totalRevenue !== undefined
+                ? `$${stats.totalRevenue.toFixed(2)}`
+                : "$0.00";
+          } catch (error) {
+            console.error("Error fetching dashboard stats:", error); // DEBUG
+            // Attempt to read response text for more details if it's a network error or non-JSON
+            if (response && !response.ok) {
+              // Check if response object exists and is not ok
+              try {
+                const errorText = await response.text();
+                console.error("Raw error response text:", errorText);
+              } catch (textError) {
+                console.error(
+                  "Could not read response as text either:",
+                  textError
+                );
+              }
+            } else if (
+              error instanceof TypeError &&
+              error.message.includes("Failed to fetch")
+            ) {
+              console.error(
+                "Possible network error or CORS issue. Check server status."
+              );
+            } else if (
+              error instanceof SyntaxError &&
+              error.message.includes("JSON")
+            ) {
+              console.error(
+                "Response was not valid JSON. Backend might be returning HTML/plain text for error."
+              );
+            } // Fallback to static data or display error
+            document.getElementById("total-users").textContent = "N/A";
+            document.getElementById("total-products").textContent = "N/A";
+            document.getElementById("pending-orders").textContent = "N/A";
+            document.getElementById("total-revenue").textContent = "$0.00";
+            alert("Could not load dashboard statistics. Please try again.");
+          }
+        }; // Call to fetch stats after admin access is confirmed
+
+        fetchDashboardStats();
+      });
+    </script>
+     
+  </body>
+</html>
