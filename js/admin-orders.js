@@ -2,10 +2,7 @@
 
 document.addEventListener("DOMContentLoaded", init);
 
-const API_BASE_URL =
-  window.location.hostname === "localhost"
-    ? "http://localhost:8080/api" // For local backend development
-    : "https://e-shop-backend-5qmu.onrender.com/api"; // Your DEPLOYED Render backend URL
+const API_BASE_URL = "https://e-shop-backend-8ouh.onrender.com/api"; // Your DEPLOYED Render backend URL
 const ADMIN_ORDERS_API_URL = `${API_BASE_URL}/admin/orders`; // Admin-specific endpoint for orders
 // FIX: Corrected the URL to match backend AuthController's @RequestMapping("/api/auth") and @GetMapping("/admin/validate")
 const AUTH_VALIDATE_ADMIN_URL = `${API_BASE_URL}/auth/admin/validate`; // Corrected Endpoint to validate admin role

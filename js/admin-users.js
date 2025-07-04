@@ -2,10 +2,7 @@
 
 document.addEventListener("DOMContentLoaded", init);
 
-const API_BASE_URL =
-  window.location.hostname === "localhost"
-    ? "http://localhost:8080/api" // For local backend development
-    : "https://e-shop-backend-5qmu.onrender.com/api"; // Your DEPLOYED Render backend URL
+const API_BASE_URL = "https://e-shop-backend-8ouh.onrender.com/api"; // Your DEPLOYED Render backend URL
 const ADMIN_USERS_API_URL = `${API_BASE_URL}/admin/users`; // Admin-specific endpoint for users
 const ROLES_API_URL = `${API_BASE_URL}/roles`; // Endpoint to fetch all roles
 const LOGIN_PAGE_URL = "../login.html"; // Relative path to login page

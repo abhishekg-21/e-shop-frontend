@@ -229,19 +229,22 @@
 
           try {
             // Send registration data to your Spring Boot backend API
-            const response = await fetch("/api/auth/register", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                firstName: firstName, // <-- Changed
-                lastName: lastName, // <-- Changed
-                phoneNumber: phoneNumber, // <-- Changed
-                email: email,
-                password: password,
-              }),
-            });
+            const response = await fetch(
+              "https://e-shop-backend-8ouh.onrender.com/api/auth/register",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  firstName: firstName, // <-- Changed
+                  lastName: lastName, // <-- Changed
+                  phoneNumber: phoneNumber, // <-- Changed
+                  email: email,
+                  password: password,
+                }),
+              }
+            );
 
             const data = await response.json(); // Assuming backend returns JSON
 
