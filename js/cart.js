@@ -3,7 +3,12 @@
 document.addEventListener("DOMContentLoaded", init);
 
 // --- Constants and Global Variables ---
-const API_BASE_URL = "/api";
+// IMPORTANT: Update this to your deployed Render backend URL when deploying frontend
+const API_BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:8080/api" // For local development
+    : "https://e-shop-backend-5qmu.onrender.com/api"; // For deployed frontend
+
 const CART_API_URL = `${API_BASE_URL}/cart`;
 const CART_API_UPDATE_QUANTITY_URL = `${CART_API_URL}/update-quantity`; // Example endpoint
 const CART_API_REMOVE_ITEM_URL = `${CART_API_URL}/remove`; // Example endpoint
