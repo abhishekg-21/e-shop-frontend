@@ -1,10 +1,7 @@
 // src/main/resources/static/js/products.js
 
 document.addEventListener("DOMContentLoaded", init);
-const API_BASE_URL =
-  window.location.hostname === "localhost"
-    ? "http://localhost:8080/api" // For local backend development
-    : "https://e-shop-backend-5qmu.onrender.com/api"; // Your DEPLOYED Render backend URL
+const API_BASE_URL = "https://e-shop-backend-5qmu.onrender.com/api"; // Your DEPLOYED Render backend URL
 const PRODUCTS_API_URL = `${API_BASE_URL}/products`;
 const CATEGORIES_API_URL = `${API_BASE_URL}/categories`;
 const CART_API_ADD_ITEM_URL = `${API_BASE_URL}/cart/add`; // Endpoint to add item to cart
