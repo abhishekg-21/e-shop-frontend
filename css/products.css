@@ -1,35 +1,23 @@
 /* products.css - Specific styles for the product listing page */
 
-/* Main heading on the products page */
-main h1 {
-  font-size: 2.8em;
-  font-weight: bold;
-  color: #333;
-  /* Added text shadow for a subtle lift */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
-}
-
-body.dark-mode main h1 {
-  color: #f1f1f1;
-  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.1);
-}
+/* Main heading on the products page - uses general h1 styles from style.css */
 
 /* Filter and Sort Bar */
 .filter-sort-bar {
-  background-color: #ffffff;
+  background-color: var(--card-bg-light);
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-light);
   margin-bottom: 30px;
-  /* Use flexbox for consistent alignment of form elements */
   display: flex;
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
-  align-items: flex-end; /* Align inputs/selects at the bottom */
+  flex-wrap: wrap;
+  align-items: flex-end;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 body.dark-mode .filter-sort-bar {
-  background-color: #3a3a3a;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  background-color: var(--card-bg-dark);
+  box-shadow: var(--shadow-dark);
 }
 
 .filter-sort-bar .form-control,
@@ -37,204 +25,150 @@ body.dark-mode .filter-sort-bar {
   border-radius: 5px;
   padding: 10px 15px;
   transition: all 0.3s ease;
-  background-color: #f8f9fa;
-  color: #333;
-  border: 1px solid #ddd;
+  background-color: var(--light-bg); /* Use light background for inputs */
+  color: var(--text-color-light);
+  border: 1px solid var(--border-color-light);
 }
 
 body.dark-mode .filter-sort-bar .form-control,
 body.dark-mode .filter-sort-bar .form-select {
-  background-color: #4a4a4a;
-  color: #f1f1f1;
+  background-color: #4a4a4a; /* Darker input background */
+  color: var(--text-color-dark);
   border-color: #555;
 }
 
 .filter-sort-bar .form-control:focus,
 .filter-sort-bar .form-select:focus {
-  border-color: #007bff;
+  border-color: var(--primary-color);
   box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
-  background-color: #fff; /* Reset to white on focus for better visibility */
+  background-color: var(
+    --card-bg-light
+  ); /* Reset to card background on focus */
 }
 
 body.dark-mode .filter-sort-bar .form-control:focus,
 body.dark-mode .filter-sort-bar .form-select:focus {
-  border-color: #87ceeb;
-  box-shadow: 0 0 0 0.25rem rgba(135, 206, 235, 0.25);
-  background-color: #3a3a3a;
+  border-color: var(
+    --secondary-color
+  ); /* Use secondary color for dark mode focus */
+  box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+  background-color: var(--card-bg-dark);
+}
+
+/* Buttons within Filter/Sort Bar */
+.filter-sort-bar .btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.filter-sort-bar .btn-primary:hover {
+  background-color: var(--primary-dark-color);
+  border-color: var(--primary-dark-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+body.dark-mode .filter-sort-bar .btn-primary {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: var(--dark-bg);
+}
+
+body.dark-mode .filter-sort-bar .btn-primary:hover {
+  background-color: var(--secondary-dark-color);
+  border-color: var(--secondary-dark-color);
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+.filter-sort-bar .btn-outline-secondary {
+  border-color: var(--border-color-light);
+  color: #6c757d;
+  padding: 10px 20px;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.filter-sort-bar .btn-outline-secondary:hover {
+  background-color: #6c757d;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(108, 117, 125, 0.2);
+}
+
+body.dark-mode .filter-sort-bar .btn-outline-secondary {
+  border-color: var(--border-color-dark);
+  color: #adb5bd;
+}
+
+body.dark-mode .filter-sort-bar .btn-outline-secondary:hover {
+  background-color: #adb5bd;
+  color: var(--dark-bg);
 }
 
 /* Product list grid container - leverages Bootstrap's .row for flexbox */
 #product-grid {
-  /* Using Bootstrap's g-4 (gap: 1.5rem / 24px) from the HTML for grid spacing */
-  /* If you remove g-4, consider adding gap: 20px here */
+  /* Inherits gap from Bootstrap's g-4 in HTML */
 }
 
 /* Product Card specific overrides/enhancements for this page */
+/* Most styles are inherited from style.css .card, .card-img-top, .card-body, .card-title, .price, .btn-primary, .btn-success */
 .product-card {
-  /* Inherits most styles from style.css */
-  height: 100%; /* Ensures all cards in a row have the same height */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* Pushes content and buttons to edges */
-  background-color: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
   text-align: center;
-}
-
-body.dark-mode .product-card {
-  background-color: #3a3a3a;
-  border-color: #555;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-.product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-body.dark-mode .product-card:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-}
-
-.product-card img.card-img-top {
-  border-bottom: 1px solid #eee; /* Light border below image */
-  margin-bottom: 15px; /* Added margin to match the new flow */
-  height: 180px; /* Adjust height for consistent product image size */
-  object-fit: cover;
-  width: 100%; /* Ensure image fills its container horizontally */
-}
-
-body.dark-mode .product-card img.card-img-top {
-  border-color: #555;
-}
-
-.product-card .card-body {
-  flex-grow: 1; /* Allows the body to expand */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 15px; /* Add padding inside the card body */
-}
-
-.product-card .card-title {
-  margin-top: 0; /* Remove top margin if present, handled by card-body padding */
-  margin-bottom: 10px;
-  font-size: 1.3em;
-  line-height: 1.3;
-  color: #333; /* Ensure text color in card is distinct */
-}
-
-body.dark-mode .product-card .card-title {
-  color: #eee;
-}
-
-.product-card .price {
-  font-size: 1.2em;
-  margin-bottom: 15px; /* Space below price */
-  color: #007bff;
-  font-weight: bold;
-}
-
-body.dark-mode .product-card .price {
-  color: #87ceeb;
-}
-
-/* Styling for product buttons */
-.product-card .btn {
-  width: 100%; /* Make buttons full width within the card body */
-  margin-bottom: 5px; /* Space between the two buttons */
-  font-weight: 500;
-}
-
-.product-card .btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
-  color: #fff;
-}
-
-.product-card .btn-primary:hover {
-  background-color: #0056b3;
-  border-color: #004085;
-}
-
-body.dark-mode .product-card .btn-primary {
-  background-color: #87ceeb;
-  border-color: #87ceeb;
-  color: #333; /* Dark text for light button in dark mode */
-}
-
-body.dark-mode .product-card .btn-primary:hover {
-  background-color: #6fb2da;
-  border-color: #6fb2da;
-}
-
-.product-card .btn-success {
-  background-color: #28a745; /* Green for Add to Cart */
-  border-color: #28a745;
-  color: #fff;
-}
-
-.product-card .btn-success:hover {
-  background-color: #218838;
-  border-color: #1e7e34;
-}
-
-body.dark-mode .product-card .btn-success {
-  background-color: #5cb85c;
-  border-color: #5cb85c;
-  color: #333;
-}
-
-body.dark-mode .product-card .btn-success:hover {
-  background-color: #4cae4c;
-  border-color: #4cae4c;
+  /* Additional specific styles if needed, but general card styles are in style.css */
 }
 
 /* Pagination Controls */
 .pagination-controls {
-  background-color: #ffffff;
+  background-color: var(--card-bg-light);
   padding: 15px 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-light);
   margin-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 body.dark-mode .pagination-controls {
-  background-color: #3a3a3a;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  background-color: var(--card-bg-dark);
+  box-shadow: var(--shadow-dark);
 }
 
 .pagination-controls .btn {
   padding: 8px 15px;
   font-size: 1em;
   border-radius: 5px;
+  font-weight: 500;
 }
 
 .pagination-controls .btn-outline-primary {
-  border-color: #007bff;
-  color: #007bff;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  transition: all 0.3s ease;
 }
 
 .pagination-controls .btn-outline-primary:hover:not(:disabled) {
-  background-color: #007bff;
+  background-color: var(--primary-color);
   color: #fff;
+  transform: translateY(-2px);
 }
 
 body.dark-mode .pagination-controls .btn-outline-primary {
-  border-color: #87ceeb;
-  color: #87ceeb;
+  border-color: var(--secondary-color);
+  color: var(--secondary-color);
 }
 
 body.dark-mode .pagination-controls .btn-outline-primary:hover:not(:disabled) {
-  background-color: #87ceeb;
-  color: #333;
+  background-color: var(--secondary-color);
+  color: var(--dark-bg);
 }
 
 .pagination-controls .btn:disabled {
@@ -251,23 +185,33 @@ body.dark-mode .pagination-controls .btn:disabled {
   color: #bbb;
 }
 
+#currentPageInfo {
+  font-weight: 600;
+  color: var(--text-color-light);
+  transition: color 0.3s ease;
+}
+
+body.dark-mode #currentPageInfo {
+  color: var(--text-color-dark);
+}
+
 /* Loading and No Products Message Styles */
 #loading-spinner {
-  display: flex; /* Make it a flex container */
-  flex-direction: column; /* Stack spinner and text vertically */
-  align-items: center; /* Center horizontally */
-  justify-content: center; /* Center vertically */
-  min-height: 200px; /* Ensure it takes up space */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
 }
 
 #loading-spinner .spinner-border {
   width: 3rem;
   height: 3rem;
-  color: #007bff; /* Primary blue for spinner */
+  color: var(--primary-color);
 }
 
 body.dark-mode #loading-spinner .spinner-border {
-  color: #87ceeb; /* Lighter blue in dark mode */
+  color: var(--secondary-color);
 }
 
 #loading-spinner p,
@@ -283,8 +227,8 @@ body.dark-mode #no-products-message p {
 }
 
 #no-products-message {
-  min-height: 200px; /* Ensure it takes up space */
-  display: flex; /* Flexbox for centering content */
+  min-height: 200px;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -293,64 +237,106 @@ body.dark-mode #no-products-message p {
 #no-products-message .lead {
   font-size: 1.5em;
   font-weight: 500;
-  color: #333;
+  color: var(--text-color-light);
 }
 
 body.dark-mode #no-products-message .lead {
-  color: #f1f1f1;
+  color: var(--text-color-dark);
 }
 
-/* Responsive adjustments for the filter/sort bar */
+/* --- Responsive Adjustments for Products Page --- */
+
+/* Medium devices (md) and smaller */
 @media (max-width: 991.98px) {
+  /* Filter/Sort bar stacking */
   .filter-sort-bar .col-lg-4,
   .filter-sort-bar .col-lg-3,
   .filter-sort-bar .col-lg-2 {
     flex: 0 0 auto;
-    width: 100%; /* Stack all filter/sort inputs and buttons on medium screens */
-  }
-  .filter-sort-bar .col-md-6 {
-    width: 100%;
+    width: 100%; /* Stack all filter/sort inputs and buttons */
   }
   .filter-sort-bar .col-md-6.d-flex {
-    flex-direction: column; /* Stack buttons vertically */
+    flex-direction: column; /* Stack Apply/Reset buttons vertically */
   }
   .filter-sort-bar .btn {
     margin-right: 0 !important; /* Remove horizontal margin between buttons */
     margin-bottom: 10px; /* Add vertical margin between stacked buttons */
   }
-}
-
-/* Responsive adjustments for product cards (retained from previous version, adapted for g-4) */
-@media (min-width: 992px) {
-  /* Large devices (lg): 4 columns */
-  #product-grid .col-lg-3 {
-    flex: 0 0 auto;
-    width: 25%;
+  .filter-sort-bar .btn:last-child {
+    margin-bottom: 0; /* No margin for the last button */
   }
-}
 
-@media (min-width: 768px) and (max-width: 991.98px) {
-  /* Medium devices (md): 3 columns */
+  /* Product grid layout adjustment for tablets (2 columns) */
   #product-grid .col-md-4 {
+    /* This targets the col-md-4 on products page */
     flex: 0 0 auto;
-    width: 33.333333%;
+    width: 50%; /* Make it 2 columns on medium screens */
   }
 }
 
-@media (min-width: 576px) and (max-width: 767.98px) {
-  /* Small devices (sm): 2 columns */
-  #product-grid .col-sm-6 {
-    flex: 0 0 auto;
-    width: 50%;
+/* Small devices (sm) and smaller */
+@media (max-width: 767.98px) {
+  /* Main heading smaller */
+  main h1 {
+    font-size: 2.2em;
+    margin-bottom: 2rem;
   }
-}
+  main h1::after {
+    width: 80px;
+  }
 
-@media (max-width: 575.98px) {
-  /* Extra small devices: 1 column */
-  #product-grid .col-sm-6,
-  #product-grid .col-md-4,
-  #product-grid .col-lg-3 {
+  /* Filter/Sort bar padding */
+  .filter-sort-bar {
+    padding: 15px;
+  }
+
+  /* Product grid layout adjustment for phones (1 column) */
+  #product-grid .col-sm-6, /* This targets the col-sm-6 on products page */
+  #product-grid .col-md-4 {
+    /* Also ensure md-4 becomes 100% on small */
     flex: 0 0 auto;
     width: 100%;
+  }
+
+  /* Pagination button size */
+  .pagination-controls .btn {
+    padding: 6px 12px;
+    font-size: 0.9em;
+  }
+  #currentPageInfo {
+    font-size: 0.9em;
+  }
+}
+
+/* Extra small devices (less than 576px) */
+@media (max-width: 575.98px) {
+  main h1 {
+    font-size: 1.8em;
+    margin-bottom: 1.5rem;
+  }
+  main h1::after {
+    width: 60px;
+  }
+  .filter-sort-bar {
+    padding: 10px;
+  }
+  .filter-sort-bar .form-control,
+  .filter-sort-bar .form-select,
+  .filter-sort-bar .btn {
+    padding: 8px 12px;
+    font-size: 0.9em;
+  }
+  .product-card .card-body {
+    padding: 10px;
+  }
+  .product-card .card-title {
+    font-size: 1.1em;
+  }
+  .product-card .price {
+    font-size: 1em;
+  }
+  .product-card .btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.85em;
   }
 }

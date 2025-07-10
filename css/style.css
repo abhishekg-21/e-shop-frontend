@@ -1,462 +1,351 @@
-/* style.css - Global Styles for E-Shop and Dark Mode Implementation */
+/* css/style.css - General site-wide styles */
 
-/* --- CSS Variables (for easy theme management) --- */
+/* Root CSS Variables for consistent theming */
 :root {
-  /* Light Mode Colors */
-  --primary-color: #007bff;
-  --secondary-color: #6c757d;
-  --success-color: #28a745;
-  --danger-color: #dc3545;
-  --info-color: #17a2b8;
-  --warning-color: #ffc107;
-
-  --text-color-light: #333;
-  --text-color-muted: #666;
-  --background-color-light: #f8f9fa;
+  --primary-color: #007bff; /* Bootstrap primary blue */
+  --primary-dark-color: #0056b3; /* Darker blue */
+  --secondary-color: #28a745; /* Bootstrap success green */
+  --secondary-dark-color: #1e7e34; /* Darker green */
+  --light-bg: #f8f9fa; /* Bootstrap light gray */
+  --dark-bg: #212529; /* Bootstrap dark gray */
   --card-bg-light: #ffffff;
-  --border-color-light: #e0e0e0;
-  --shadow-color-light: rgba(0, 0, 0, 0.1);
-
-  /* Dark Mode Colors (will be overridden by .dark-mode) */
-  --text-color-dark: #f1f1f1;
-  --text-color-muted-dark: #adb5bd;
-  --background-color-dark: #2c2c2c;
-  --card-bg-dark: #3a3a3a;
-  --border-color-dark: #555;
-  --shadow-color-dark: rgba(0, 0, 0, 0.5);
-
-  /* Specific Dark Mode Primary/Accent Colors for better contrast */
-  --primary-color-dark-accent: #87ceeb; /* Sky Blue */
-  --success-color-dark-accent: #5cb85c; /* Lighter Green */
-  --secondary-color-dark-accent: #adb5bd; /* Lighter Grey */
-
-  /* Header and Footer Heights (can be used for calc functions) */
-  --header-height: 80px;
-  --footer-height: 60px;
+  --card-bg-dark: #343a40; /* Darker card background */
+  --text-color-light: #212529; /* Dark text for light mode */
+  --text-color-dark: #f8f9fa; /* Light text for dark mode */
+  --border-color-light: #dee2e6;
+  --border-color-dark: #495057;
+  --shadow-light: 0 0.5rem 1rem rgba(0, 0, 0, 0.08); /* Soft shadow */
+  --shadow-dark: 0 0.5rem 1.2rem rgba(0, 0, 0, 0.3); /* Stronger dark shadow */
 }
 
-/* --- Base Styles --- */
-html {
-  scroll-behavior: smooth; /* Smooth scrolling for anchor links */
-}
-
+/* Base Body Styles */
 body {
-  font-family: "Inter", sans-serif; /* Using Inter, fallback to sans-serif */
-  line-height: 1.6;
-  margin: 0;
-  padding: 0;
-  background-color: var(--background-color-light);
+  font-family: "Inter", sans-serif;
+  background-color: var(--light-bg);
   color: var(--text-color-light);
-  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth theme transition */
+  transition: background-color 0.4s ease, color 0.4s ease;
+  line-height: 1.6;
 }
 
-/* Dark Mode Body Styles */
+/* Dark Mode Toggle */
 body.dark-mode {
-  background-color: var(--background-color-dark);
+  background-color: var(--dark-bg);
   color: var(--text-color-dark);
 }
 
-/* Global Container for content width */
-.container {
-  max-width: 1200px; /* Max width for central content */
-  margin: 0 auto;
-  padding: 0 15px; /* Horizontal padding on smaller screens */
-}
-
-/* --- Header Styles --- */
+/* Header Styles */
 .site-header {
   background-color: var(--card-bg-light);
-  border-bottom: 1px solid var(--border-color-light);
-  padding: 15px 0;
-  box-shadow: 0 2px 10px var(--shadow-color-light);
-  position: sticky; /* Sticky header */
+  box-shadow: var(--shadow-light);
+  padding: 1rem 0;
+  position: sticky;
   top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000; /* Ensure header is on top */
-  height: var(--header-height); /* Fixed height */
-  display: flex;
-  align-items: center;
-  transition: background-color 0.3s ease, border-color 0.3s ease,
-    box-shadow 0.3s ease;
+  z-index: 1000; /* Ensure header is always on top */
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 body.dark-mode .site-header {
   background-color: var(--card-bg-dark);
-  border-color: var(--border-color-dark);
-  box-shadow: 0 2px 12px var(--shadow-color-dark);
+  box-shadow: var(--shadow-dark);
 }
 
 .header-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  max-width: 1200px; /* Consistent max width for content */
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 .logo {
-  font-size: 1.8em;
-  font-weight: bold;
+  font-size: 2.2rem; /* Slightly larger logo */
+  font-weight: 700;
   color: var(--primary-color);
-  margin: 0;
+  margin: 0; /* Remove default margin */
 }
 
 body.dark-mode .logo {
-  color: var(--primary-color-dark-accent);
+  color: var(--secondary-color); /* Green logo in dark mode */
 }
 
 .main-nav a {
-  text-decoration: none;
-  color: var(--text-color-light);
+  padding: 0.6rem 1.2rem;
   font-weight: 500;
-  margin-left: 25px;
-  padding: 5px 0;
-  transition: color 0.3s ease, border-bottom 0.3s ease;
-  position: relative;
+  color: var(--text-color-light);
+  text-decoration: none;
+  transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
+  border-radius: 0.375rem; /* Slightly rounded */
 }
 
 body.dark-mode .main-nav a {
   color: var(--text-color-dark);
 }
 
-.main-nav a::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -5px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: var(--primary-color);
-  transition: width 0.3s ease;
+.main-nav a:hover {
+  background-color: rgba(0, 123, 255, 0.1); /* Light blue hover */
+  color: var(--primary-color);
+  transform: translateY(-2px); /* Subtle lift */
 }
 
-.main-nav a:hover::after,
-.main-nav a.active::after {
-  width: 100%;
+body.dark-mode .main-nav a:hover {
+  background-color: rgba(40, 167, 69, 0.15); /* Light green hover */
+  color: var(--secondary-color);
 }
 
-.main-nav a:hover,
 .main-nav a.active {
   color: var(--primary-color);
+  font-weight: 600;
+  background-color: rgba(0, 123, 255, 0.05); /* Subtle active background */
 }
 
-body.dark-mode .main-nav a:hover,
 body.dark-mode .main-nav a.active {
-  color: var(--primary-color-dark-accent);
+  color: var(--secondary-color);
+  background-color: rgba(40, 167, 69, 0.08);
 }
 
-body.dark-mode .main-nav a::after {
-  background-color: var(--primary-color-dark-accent);
-}
-
-/* Theme Toggle Button */
 .theme-button {
-  background-color: transparent;
-  border: 1px solid var(--border-color-light);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 1.3em;
+  background: none;
+  border: none;
+  font-size: 1.8rem; /* Larger icon */
   cursor: pointer;
-  display: flex;
+  padding: 0.5rem;
+  border-radius: 50%; /* Circular button */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex; /* Center emoji */
   align-items: center;
   justify-content: center;
-  color: var(--text-color-light);
-  transition: background-color 0.3s ease, border-color 0.3s ease,
-    color 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
-
-body.dark-mode .theme-button {
-  background-color: #555;
-  border-color: #777;
-  color: var(--text-color-dark);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .theme-button:hover {
-  background-color: var(--background-color-light);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.08);
+  transform: scale(1.1);
 }
 
 body.dark-mode .theme-button:hover {
-  background-color: #666;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
-/* --- General Button Styles (for common use) --- */
-/* These serve as base for Bootstrap's .btn and similar custom buttons */
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 1em;
-  font-weight: 500;
+/* General Section Headings */
+h1 {
+  /* Applies to main h1 on products page */
+  font-size: 2.8em; /* Adjusted for main page titles */
+  font-weight: 700;
+  color: var(--text-color-light);
+  margin-bottom: 2.5rem; /* Consistent margin */
   text-align: center;
-  text-decoration: none;
-  border-radius: 8px; /* Slightly rounded for all buttons */
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap; /* Prevent text wrapping */
+  position: relative;
+  padding-bottom: 0.5rem;
 }
 
-.btn-primary {
-  background-color: var(--primary-color);
-  color: #fff;
-  border: 1px solid var(--primary-color);
-}
-
-.btn-primary:hover {
-  background-color: #0056b3;
-  border-color: #004085;
-  color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-body.dark-mode .btn-primary {
-  background-color: var(--primary-color-dark-accent);
-  border-color: var(--primary-color-dark-accent);
-  color: var(--text-color-light); /* Dark text on light button */
-}
-
-body.dark-mode .btn-primary:hover {
-  background-color: #6fb2da;
-  border-color: #6fb2da;
-  color: #000;
-}
-
-.btn-secondary {
-  background-color: var(--secondary-color);
-  color: #fff;
-  border: 1px solid var(--secondary-color);
-}
-
-.btn-secondary:hover {
-  background-color: #5a6268;
-  border-color: #4e555b;
-  color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-body.dark-mode .btn-secondary {
-  background-color: var(--secondary-color-dark-accent);
-  border-color: var(--secondary-color-dark-accent);
-  color: var(--text-color-light);
-}
-
-body.dark-mode .btn-secondary:hover {
-  background-color: #929ea8;
-  border-color: #929ea8;
-  color: #000;
-}
-
-.btn-success {
-  background-color: var(--success-color);
-  color: #fff;
-  border: 1px solid var(--success-color);
-}
-
-.btn-success:hover {
-  background-color: #218838;
-  border-color: #1e7e34;
-  color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-body.dark-mode .btn-success {
-  background-color: var(--success-color-dark-accent);
-  border-color: var(--success-color-dark-accent);
-  color: var(--text-color-light);
-}
-
-body.dark-mode .btn-success:hover {
-  background-color: #4cae4c;
-  border-color: #4cae4c;
-  color: #000;
-}
-
-.btn-outline-primary {
-  background-color: transparent;
-  color: var(--primary-color);
-  border: 1px solid var(--primary-color);
-}
-
-.btn-outline-primary:hover {
-  background-color: var(--primary-color);
-  color: #fff;
-}
-
-body.dark-mode .btn-outline-primary {
-  color: var(--primary-color-dark-accent);
-  border-color: var(--primary-color-dark-accent);
-}
-
-body.dark-mode .btn-outline-primary:hover {
-  background-color: var(--primary-color-dark-accent);
-  color: var(--text-color-light);
-}
-
-.btn-danger {
-  background-color: var(--danger-color);
-  color: #fff;
-  border: 1px solid var(--danger-color);
-}
-
-.btn-danger:hover {
-  background-color: #c82333;
-  border-color: #bd2130;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-body.dark-mode .btn-danger {
-  background-color: #e06666; /* Slightly softer red */
-  border-color: #e06666;
-  color: #fff;
-}
-
-body.dark-mode .btn-danger:hover {
-  background-color: #cc4444;
-  border-color: #cc4444;
-}
-
-/* --- Product Card Base Styles (for common use across pages) --- */
-.product-card {
-  background-color: var(--card-bg-light);
-  border: 1px solid var(--border-color-light);
-  border-radius: 8px;
-  overflow: hidden; /* Ensures image corners are rounded */
-  box-shadow: 0 4px 8px var(--shadow-color-light);
-  transition: transform 0.2s ease, box-shadow 0.2s ease,
-    background-color 0.3s ease, border-color 0.3s ease;
-  text-align: center;
-  height: 100%; /* For consistent heights in grids */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-body.dark-mode .product-card {
-  background-color: var(--card-bg-dark);
-  border-color: var(--border-color-dark);
-  box-shadow: 0 4px 12px var(--shadow-color-dark);
-}
-
-.product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px var(--shadow-color-light);
-}
-
-body.dark-mode .product-card:hover {
-  box-shadow: 0 8px 20px var(--shadow-color-dark);
-}
-
-.product-card img.card-img-top {
-  width: 100%;
-  height: 200px; /* Fixed height for product images */
-  object-fit: cover; /* Ensures images cover the area without distortion */
-  border-bottom: 1px solid var(--border-color-light);
-  margin-bottom: 15px; /* Space between image and text */
-}
-
-body.dark-mode .product-card img.card-img-top {
-  border-color: var(--border-color-dark);
-}
-
-.product-card .card-body {
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex-grow: 1;
-}
-
-.product-card .card-title {
-  font-size: 1.2em;
-  font-weight: bold;
-  color: var(--text-color-light);
-  margin-bottom: 10px;
-  line-height: 1.3;
-}
-
-body.dark-mode .product-card .card-title {
+body.dark-mode h1 {
   color: var(--text-color-dark);
 }
 
-.product-card .price {
-  font-size: 1.1em;
-  font-weight: bold;
-  color: var(--primary-color);
-  margin-bottom: 15px;
+h1::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 100px; /* Longer underline for main titles */
+  height: 4px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
 }
 
-body.dark-mode .product-card .price {
-  color: var(--primary-color-dark-accent);
+body.dark-mode h1::after {
+  background-color: var(--secondary-color);
 }
 
-.product-card .btn {
-  width: 100%;
-  margin-top: 5px; /* Space between buttons if stacked */
-}
-
-/* --- Footer Styles --- */
-footer {
-  background-color: #222222;
-  color: #fff;
-  padding: 30px 0;
+h2 {
+  /* Applies to h2 on home page, etc. */
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-color-light);
+  margin-bottom: 2.5rem;
   text-align: center;
-  margin-top: 50px; /* Space above footer */
-  height: var(--footer-height); /* Fixed height */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  position: relative;
+  padding-bottom: 0.5rem;
 }
 
-body.dark-mode footer {
-  background-color: #1a1a1a; /* Even darker in dark mode for contrast */
+body.dark-mode h2 {
+  color: var(--text-color-dark);
 }
 
-footer p {
-  margin-bottom: 10px;
-  font-size: 0.9em;
+h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
 }
 
-footer .social-links a {
-  color: #fff;
+body.dark-mode h2::after {
+  background-color: var(--secondary-color);
+}
+
+/* Card General Styles (for featured categories/products) */
+.card {
+  border: none; /* Remove default Bootstrap border */
+  border-radius: 1rem; /* More rounded corners */
+  overflow: hidden;
+  box-shadow: var(--shadow-light);
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease;
+  height: 100%; /* Ensure consistent height in grids */
+}
+
+body.dark-mode .card {
+  background-color: var(--card-bg-dark);
+  box-shadow: var(--shadow-dark);
+}
+
+.card:hover {
+  transform: translateY(-8px); /* Lift on hover */
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+}
+
+body.dark-mode .card:hover {
+  box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.4);
+}
+
+.card-img-top {
+  height: 180px; /* Consistent image height */
+  object-fit: cover; /* Ensures images fill the space without distortion */
+  border-top-left-radius: 1rem; /* Match card border-radius */
+  border-top-right-radius: 1rem;
+}
+
+.card-body {
+  padding: 1.5rem;
+  background-color: var(
+    --card-bg-light
+  ); /* Explicit background for card body */
+  transition: background-color 0.3s ease;
+}
+
+body.dark-mode .card-body {
+  background-color: var(--card-bg-dark);
+}
+
+.card-title {
   font-size: 1.5em;
-  margin: 0 10px;
-  transition: color 0.3s ease;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-color-light);
 }
 
-footer .social-links a:hover {
-  color: var(--primary-color); /* Primary color on hover */
+body.dark-mode .card-title {
+  color: var(--text-color-dark);
 }
 
-body.dark-mode footer .social-links a:hover {
-  color: var(--primary-color-dark-accent);
+.price {
+  font-size: 1.25em;
+  font-weight: 700;
+  color: var(--primary-color); /* Highlight price */
+  margin-bottom: 1rem;
 }
 
-/* --- Utility Classes / Animations --- */
-.text-primary {
-  color: var(--primary-color) !important;
-}
-.text-secondary {
-  color: var(--secondary-color) !important;
-}
-.text-success {
-  color: var(--success-color) !important;
-}
-.text-danger {
-  color: var(--danger-color) !important;
-}
-.text-warning {
-  color: var(--warning-color) !important;
-}
-.text-info {
-  color: var(--info-color) !important;
+body.dark-mode .price {
+  color: var(--secondary-color);
 }
 
-/* Fade-in animation for elements (e.g., product cards) */
+/* Buttons within cards */
+.card .btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.card .btn-primary:hover {
+  background-color: var(--primary-dark-color);
+  border-color: var(--primary-dark-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+body.dark-mode .card .btn-primary {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: var(--dark-bg); /* Dark text on light green button */
+}
+
+body.dark-mode .card .btn-primary:hover {
+  background-color: var(--secondary-dark-color);
+  border-color: var(--secondary-dark-color);
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+.card .btn-success {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.card .btn-success:hover {
+  background-color: var(--secondary-dark-color);
+  border-color: var(--secondary-dark-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+body.dark-mode .card .btn-success {
+  background-color: var(--primary-color); /* Blue button in dark mode */
+  border-color: var(--primary-color);
+  color: #fff;
+}
+
+body.dark-mode .card .btn-success:hover {
+  background-color: var(--primary-dark-color);
+  border-color: var(--primary-dark-color);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Footer Section */
+.site-footer {
+  background-color: var(--card-bg-dark);
+  color: var(--text-color-dark);
+  padding: 2.5rem 0;
+  text-align: center;
+}
+
+.site-footer p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.social-links a {
+  color: var(--text-color-dark);
+  margin: 0 0.8rem;
+  font-size: 1.6rem;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.social-links a:hover {
+  color: var(--primary-color);
+  transform: translateY(-3px);
+}
+
+body.dark-mode .social-links a:hover {
+  color: var(--secondary-color);
+}
+
+/* Fade-in effect for elements (used with Intersection Observer) */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
@@ -468,59 +357,137 @@ body.dark-mode footer .social-links a:hover {
   transform: translateY(0);
 }
 
-/* --- Responsive Adjustments (General) --- */
-@media (max-width: 767.98px) {
-  /* Small devices (portrait phones) */
-  .site-header {
-    height: auto; /* Allow header to expand if nav items wrap */
-    padding: 10px 0;
-  }
+/* --- Responsive Adjustments (General Site-wide) --- */
+
+/* Small devices (landscape phones, 576px and up) - Bootstrap's sm breakpoint */
+@media (max-width: 991.98px) {
+  /* Header adjustments for smaller screens */
   .header-inner {
-    flex-direction: column; /* Stack logo, nav, toggle vertically */
-    gap: 10px;
+    flex-direction: column; /* Stack logo, nav, theme toggle */
+    gap: 0.75rem; /* Reduce gap */
+    padding: 0.75rem 1rem; /* Adjust padding */
+  }
+  .logo {
+    font-size: 1.8rem; /* Smaller logo */
+    margin-bottom: 0.5rem;
   }
   .main-nav {
-    margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: wrap; /* Allow nav links to wrap */
+    justify-content: center; /* Center nav links */
+    gap: 0.4rem; /* Smaller gap between nav items */
   }
   .main-nav a {
-    margin: 0 10px;
-    font-size: 0.9em;
+    padding: 0.4rem 0.8rem; /* Smaller padding for nav links */
+    font-size: 0.9rem; /* Smaller font for nav links */
   }
   .theme-button {
-    margin-top: 10px;
+    font-size: 1.5rem; /* Smaller theme toggle */
+    padding: 0.4rem;
   }
 
-  /* General button resizing for mobile */
-  .btn {
-    padding: 8px 15px;
-    font-size: 0.95em;
+  /* General headings */
+  h1,
+  h2 {
+    /* Apply to both h1 and h2 */
+    font-size: 2em; /* Smaller main headings */
+    margin-bottom: 2rem;
+  }
+  h1::after,
+  h2::after {
+    width: 60px; /* Shorter underline */
   }
 
-  .product-card img.card-img-top {
-    height: 180px; /* Slightly smaller images on mobile product cards */
+  /* Card titles and prices */
+  .card-title {
+    font-size: 1.2em;
+  }
+  .price {
+    font-size: 1.05em;
   }
 
-  footer {
-    padding: 20px 0;
-    height: auto;
+  /* Card body padding */
+  .card-body {
+    padding: 1rem;
+  }
+
+  /* Buttons in cards */
+  .card .btn-primary,
+  .card .btn-success {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9em;
+  }
+
+  /* Footer adjustments */
+  .site-footer p {
+    font-size: 1rem;
+  }
+  .social-links a {
+    font-size: 1.4rem;
+    margin: 0 0.6rem;
   }
 }
 
+/* Extra small devices (portrait phones, less than 576px) - Custom breakpoint */
 @media (max-width: 575.98px) {
-  /* Extra small devices */
+  /* Header further adjustments */
+  .header-inner {
+    padding: 0.5rem 0.75rem;
+    gap: 0.5rem;
+  }
   .logo {
-    font-size: 1.5em;
+    font-size: 1.6rem;
   }
   .main-nav a {
-    margin: 0 5px;
-    font-size: 0.85em;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.85rem;
   }
   .theme-button {
-    width: 35px;
-    height: 35px;
+    font-size: 1.3rem;
+  }
+
+  /* General headings */
+  h1,
+  h2 {
+    /* Apply to both h1 and h2 */
+    font-size: 1.8em;
+    margin-bottom: 1.5rem;
+  }
+  h1::after,
+  h2::after {
+    width: 50px;
+  }
+
+  /* Card image height for very small screens */
+  .card-img-top {
+    height: 120px;
+  }
+
+  /* Card body padding */
+  .card-body {
+    padding: 0.8rem;
+  }
+
+  /* Card titles and prices */
+  .card-title {
     font-size: 1.1em;
+  }
+  .price {
+    font-size: 1em;
+  }
+
+  /* Buttons in cards */
+  .card .btn-primary,
+  .card .btn-success {
+    padding: 0.5rem 1rem;
+    font-size: 0.85em;
+  }
+
+  /* Footer adjustments */
+  .site-footer p {
+    font-size: 0.9rem;
+  }
+  .social-links a {
+    font-size: 1.2rem;
+    margin: 0 0.5rem;
   }
 }

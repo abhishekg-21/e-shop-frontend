@@ -1,10 +1,11 @@
-// src/main/resources/static/js/main.js
+// js/main.js
 
 document.addEventListener("DOMContentLoaded", init);
 
 // --- DOM Elements ---
 const themeToggleBtn = document.getElementById("theme-toggle");
 const body = document.body; // Reference to the <body> tag
+const authLink = document.getElementById("auth-link"); // Auth link in header
 
 // --- Initialization ---
 function init() {
@@ -16,9 +17,30 @@ function init() {
     themeToggleBtn.addEventListener("click", toggleTheme);
   }
 
-  // Common header authentication link logic (can also be handled page-specifically)
-  // This is a minimal version, more robust handling is in page-specific JS files
+  // Common header authentication link logic
   updateHeaderAuthLink();
+
+  // Optional: Intersection Observer for fade-in effect
+  // This is a visual enhancement and doesn't affect core functionality
+  const fadeIns = document.querySelectorAll(".fade-in");
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 } // Trigger when 10% of item is visible
+    );
+
+    fadeIns.forEach((el) => observer.observe(el));
+  } else {
+    // Fallback for browsers that don't support Intersection Observer
+    fadeIns.forEach((el) => el.classList.add("visible"));
+  }
 }
 
 // --- Theme Toggling Logic ---
@@ -74,22 +96,23 @@ function applySavedTheme() {
 
 /**
  * Updates the "Login" / "Logout" link in the header based on JWT token presence.
- * This is a general handler; page-specific scripts might have more detailed logic.
  */
 function updateHeaderAuthLink() {
-  const authLink = document.getElementById("auth-link");
-  if (!authLink) return;
+  if (!authLink) return; // Exit if authLink element is not found
 
   const token = localStorage.getItem("jwt_token");
 
   if (token) {
     authLink.textContent = "Logout";
-    authLink.href = "#"; // Prevent navigation, will handle click via JS
-    // Attach listener if not already attached, or re-attach to ensure it works
-    const existingListener = authLink._logoutListener; // Check if we stored it before
+    authLink.href = "#"; // Make logout link non-navigable directly
+
+    // Remove any existing listener to prevent duplicates
+    const existingListener = authLink._logoutListener;
     if (existingListener) {
       authLink.removeEventListener("click", existingListener);
     }
+
+    // Add new click listener for logout
     const newListener = (e) => {
       e.preventDefault();
       localStorage.removeItem("jwt_token"); // Clear token

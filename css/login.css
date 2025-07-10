@@ -19,28 +19,48 @@ body.dark-mode .login-container {
 .login-card {
   max-width: 450px; /* Max width for the card */
   width: 100%; /* Ensure it takes full width up to max-width */
-  padding: 40px;
-  border-radius: 12px; /* More pronounced rounded corners */
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Stronger shadow for depth */
+  padding: 50px; /* Increased padding for more breathing room */
+  border-radius: 16px; /* More pronounced rounded corners */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15); /* Stronger shadow for depth */
   border: none; /* Remove default Bootstrap card border */
   transition: all 0.3s ease; /* Smooth transition for dark mode/hover effects */
 }
 
-/* Dark mode for the login/register card */
 body.dark-mode .login-card {
   background-color: #333333; /* Dark card background */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); /* Stronger dark shadow */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); /* Stronger dark shadow */
 }
 
 /* Heading for login/register form */
 .login-card h2 {
-  font-size: 2em;
+  font-size: 2.5em; /* Slightly larger heading */
   font-weight: bold;
   color: #333;
+  margin-bottom: 30px; /* More space below heading */
+  letter-spacing: -0.5px; /* Tighter letter spacing for modern look */
+  position: relative; /* For the underline effect */
+  padding-bottom: 10px; /* Space for the underline */
 }
 
 body.dark-mode .login-card h2 {
   color: #f1f1f1; /* Light text for dark mode */
+}
+
+/* Underline effect for h2 */
+.login-card h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 80px; /* Length of the underline */
+  height: 4px; /* Thickness of the underline */
+  background-color: var(--primary-color); /* Use primary color for underline */
+  border-radius: 2px;
+}
+
+body.dark-mode .login-card h2::after {
+  background-color: var(--secondary-color); /* Secondary color in dark mode */
 }
 
 /* Form group styling */
@@ -62,8 +82,8 @@ body.dark-mode .form-label {
 /* Input field styling */
 .form-control {
   border-radius: 8px; /* Rounded input fields */
-  padding: 12px 15px;
-  border: 1px solid #ddd;
+  padding: 14px 18px; /* Slightly more padding */
+  border: 1px solid #e0e0e0; /* Lighter border for a softer look */
   background-color: #fcfcfc; /* Slightly off-white for inputs */
   color: #333;
   transition: all 0.3s ease;
@@ -71,82 +91,81 @@ body.dark-mode .form-label {
 
 body.dark-mode .form-control {
   background-color: #4a4a4a;
-  border-color: #555;
+  border-color: #666; /* Adjust border in dark mode */
   color: #f1f1f1;
 }
 
 .form-control:focus {
   border-color: #007bff; /* Primary blue border on focus */
-  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25); /* Bootstrap-like shadow */
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.15); /* Softer focus shadow */
   background-color: #fff; /* White background on focus */
 }
 
 body.dark-mode .form-control:focus {
-  border-color: #87ceeb; /* Lighter blue on focus for dark mode */
-  box-shadow: 0 0 0 0.25rem rgba(135, 206, 235, 0.25);
+  border-color: #6fa8dc; /* Lighter blue on focus for dark mode */
+  box-shadow: 0 0 0 0.25rem rgba(111, 168, 220, 0.25);
   background-color: #3a3a3a;
 }
 
 /* Primary button styling (for Login button) */
 .btn-primary {
-  background-color: #007bff; /* Primary blue */
-  border-color: #007bff;
-  font-size: 1.2em;
-  padding: 12px 25px;
+  background-color: var(--primary-color); /* Primary blue */
+  border-color: var(--primary-color);
+  font-size: 1.1em; /* Adjusted font size */
+  padding: 14px 30px; /* More padding */
   border-radius: 50px; /* Pill shape */
   font-weight: 600;
   letter-spacing: 0.5px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition curve */
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.25); /* Stronger initial shadow */
 }
 
 .btn-primary:hover {
-  background-color: #0056b3;
-  border-color: #004085;
-  transform: translateY(-2px); /* Lift button on hover */
-  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
+  background-color: var(--primary-dark-color);
+  border-color: var(--primary-dark-color);
+  transform: translateY(-3px); /* More pronounced lift */
+  box-shadow: 0 10px 30px rgba(0, 123, 255, 0.4); /* Stronger hover shadow */
 }
 
 /* Dark mode for primary button */
 body.dark-mode .btn-primary {
-  background-color: #87ceeb; /* Lighter blue for dark mode */
-  border-color: #87ceeb;
-  color: #343a40; /* Dark text for light button in dark mode */
-  box-shadow: 0 4px 15px rgba(135, 206, 235, 0.3);
+  background-color: #6fa8dc; /* A slightly softer blue for dark mode primary */
+  border-color: #6fa8dc;
+  color: #ffffff; /* Ensure white text on this button */
+  box-shadow: 0 6px 20px rgba(111, 168, 220, 0.3);
 }
 
 body.dark-mode .btn-primary:hover {
-  background-color: #6fb2da;
-  border-color: #6fb2da;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(135, 206, 235, 0.4);
+  background-color: #559bd4;
+  border-color: #559bd4;
+  box-shadow: 0 10px 30px rgba(111, 168, 220, 0.5);
 }
 
 /* Forgot password link */
 .forgot-password {
   font-size: 0.9em;
-  color: #007bff;
+  color: var(--primary-color);
   display: block; /* Make it a block element to center or give margin */
-  margin-bottom: 20px;
+  margin-bottom: 25px; /* More space below */
   text-align: center;
 }
 
 body.dark-mode .forgot-password {
-  color: #87ceeb;
+  color: #6fa8dc; /* Lighter blue for dark mode */
 }
 
 .forgot-password:hover {
   text-decoration: underline !important; /* Ensure underline on hover */
-  color: #0056b3;
+  color: var(--primary-dark-color);
 }
 
 body.dark-mode .forgot-password:hover {
-  color: #6fb2da;
+  color: #559bd4;
 }
 
 /* Horizontal rule separator */
 hr {
-  margin: 30px 0;
+  margin: 40px 0; /* More vertical space around HR */
   border-top: 1px solid #eee;
 }
 
@@ -167,17 +186,18 @@ body.dark-mode .login-card p.text-center {
 .btn-outline-secondary {
   border-color: #6c757d;
   color: #6c757d;
-  font-size: 1.1em;
-  padding: 10px 20px;
+  font-size: 1em; /* Adjusted font size */
+  padding: 12px 25px; /* Adjust padding */
   border-radius: 50px;
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .btn-outline-secondary:hover {
   background-color: #6c757d;
   color: #ffffff;
-  box-shadow: 0 2px 8px rgba(108, 117, 125, 0.2);
+  box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3); /* Add shadow on hover */
+  transform: translateY(-1px); /* Slight lift */
 }
 
 /* Dark mode for secondary button */
@@ -192,19 +212,81 @@ body.dark-mode .btn-outline-secondary:hover {
 }
 
 /* Responsive adjustments */
-@media (max-width: 575.98px) {
+@media (max-width: 767.98px) {
+  /* Adjust for smaller tablets and phones */
   .login-card {
-    padding: 25px; /* Reduce padding on small screens */
+    padding: 35px; /* Reduce padding on smaller screens */
     margin: 20px; /* Add margin to prevent sticking to edges */
   }
 
   .login-card h2 {
-    font-size: 1.8em; /* Smaller heading on small screens */
+    font-size: 2.2em; /* Smaller heading on smaller screens */
+    margin-bottom: 25px;
+  }
+
+  .form-control {
+    padding: 12px 15px; /* Slightly less padding for inputs */
   }
 
   .btn-primary,
   .btn-outline-secondary {
-    font-size: 1.1em;
-    padding: 10px 20px;
+    font-size: 1em; /* Slightly smaller font for buttons */
+    padding: 12px 20px;
+  }
+
+  .forgot-password {
+    margin-bottom: 20px;
+  }
+
+  hr {
+    margin: 30px 0;
+  }
+}
+
+@media (max-width: 575.98px) {
+  /* Adjust for portrait phones */
+  .login-card {
+    padding: 25px; /* Further reduce padding on very small screens */
+    margin: 15px; /* Smaller margin */
+    border-radius: 12px; /* Slightly less rounded */
+  }
+
+  .login-card h2 {
+    font-size: 1.8em; /* Smallest heading size */
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+  }
+  .login-card h2::after {
+    width: 60px; /* Shorter underline */
+    height: 3px; /* Thinner underline */
+  }
+
+  .form-control {
+    padding: 10px 12px; /* Smallest padding for inputs */
+    font-size: 0.95em;
+  }
+
+  .form-label {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+  }
+
+  .btn-primary,
+  .btn-outline-secondary {
+    font-size: 0.95em;
+    padding: 10px 18px;
+  }
+
+  .forgot-password {
+    font-size: 0.85em;
+    margin-bottom: 15px;
+  }
+
+  hr {
+    margin: 25px 0;
+  }
+
+  .login-card p.text-center {
+    font-size: 0.9em;
   }
 }

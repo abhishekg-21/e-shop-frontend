@@ -16,26 +16,27 @@ body.dark-mode .register-container {
 .register-card {
   /* Example: If register card needs different max-width or shadow */
   /* max-width: 500px; */
+  padding: 40px; /* Slightly less padding than login-card to accommodate more fields */
 }
 
 /* Specific styling for the 'Register' button (btn-success) */
 .btn-success {
-  background-color: #28a745; /* Green color for success */
-  border-color: #28a745;
-  font-size: 1.2em;
-  padding: 12px 25px;
+  background-color: var(--secondary-color); /* Green color for success */
+  border-color: var(--secondary-color);
+  font-size: 1.1em; /* Adjusted font size */
+  padding: 14px 25px; /* Adjusted padding */
   border-radius: 50px; /* Pill shape */
   font-weight: 600;
   letter-spacing: 0.5px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2); /* Green shadow */
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.25); /* Green shadow */
 }
 
 .btn-success:hover {
-  background-color: #218838;
-  border-color: #1e7e34;
-  transform: translateY(-2px); /* Lift button on hover */
-  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.3);
+  background-color: var(--secondary-dark-color);
+  border-color: var(--secondary-dark-color);
+  transform: translateY(-3px); /* Lift button on hover */
+  box-shadow: 0 10px 30px rgba(40, 167, 69, 0.4);
 }
 
 /* Dark mode for the success button */
@@ -43,14 +44,14 @@ body.dark-mode .btn-success {
   background-color: #5cb85c; /* Lighter green for dark mode */
   border-color: #5cb85c;
   color: #343a40; /* Dark text for light button in dark mode */
-  box-shadow: 0 4px 15px rgba(92, 184, 92, 0.3);
+  box-shadow: 0 6px 20px rgba(92, 184, 92, 0.3);
 }
 
 body.dark-mode .btn-success:hover {
   background-color: #4cae4c;
   border-color: #4cae4c;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(92, 184, 92, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(92, 184, 92, 0.4);
 }
 
 /* Styling for the password help text */
@@ -70,25 +71,106 @@ body.dark-mode .form-text {
    If you need specific overrides, define them here.
 */
 .btn-outline-primary {
-  /* Example: Tweak padding or font-size if needed specifically for register page */
-  /* padding: 10px 20px; */
-  /* font-size: 1em; */
+  /* Inherits most styles from login.css .btn-primary */
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  background-color: transparent; /* Ensure it's truly outline */
+  font-size: 1em; /* Adjusted font size */
+  padding: 12px 25px; /* Adjusted padding */
 }
 
-/* Responsive adjustments (can be copied/modified from login.css if needed specific overrides) */
-@media (max-width: 575.98px) {
+.btn-outline-primary:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+body.dark-mode .btn-outline-primary {
+  border-color: #6fa8dc;
+  color: #6fa8dc;
+}
+
+body.dark-mode .btn-outline-primary:hover {
+  background-color: #6fa8dc;
+  color: #343a40;
+  box-shadow: 0 4px 12px rgba(111, 168, 220, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+  /* Adjust for smaller tablets and phones */
   .register-card {
-    padding: 25px; /* Reduce padding on small screens */
+    padding: 30px; /* Reduce padding on smaller screens */
     margin: 20px; /* Add margin to prevent sticking to edges */
   }
 
   .register-card h2 {
-    font-size: 1.8em; /* Smaller heading on small screens */
+    font-size: 2.2em; /* Smaller heading on smaller screens */
+    margin-bottom: 25px;
+  }
+
+  .form-group {
+    margin-bottom: 15px !important; /* Adjust spacing between form groups */
+  }
+
+  .form-control {
+    padding: 12px 15px; /* Slightly less padding for inputs */
   }
 
   .btn-success,
   .btn-outline-primary {
-    font-size: 1.1em;
-    padding: 10px 20px;
+    font-size: 1em; /* Slightly smaller font for buttons */
+    padding: 12px 20px;
+  }
+
+  hr {
+    margin: 30px 0;
+  }
+}
+
+@media (max-width: 575.98px) {
+  /* Adjust for portrait phones */
+  .register-card {
+    padding: 20px; /* Further reduce padding on very small screens */
+    margin: 15px; /* Smaller margin */
+    border-radius: 12px; /* Slightly less rounded */
+  }
+
+  .register-card h2 {
+    font-size: 1.8em; /* Smallest heading size */
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+  }
+  .register-card h2::after {
+    width: 60px; /* Shorter underline */
+    height: 3px; /* Thinner underline */
+  }
+
+  .form-group {
+    margin-bottom: 12px !important; /* Even smaller spacing */
+  }
+
+  .form-control {
+    padding: 10px 12px; /* Smallest padding for inputs */
+    font-size: 0.95em;
+  }
+
+  .form-label {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+  }
+
+  .btn-success,
+  .btn-outline-primary {
+    font-size: 0.95em;
+    padding: 10px 18px;
+  }
+
+  hr {
+    margin: 25px 0;
+  }
+
+  .login-card p.text-center {
+    font-size: 0.9em;
   }
 }
