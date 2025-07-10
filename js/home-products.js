@@ -4,10 +4,7 @@ document.addEventListener("DOMContentLoaded", initHomeProducts);
 
 // --- Constants and Global Variables ---
 // IMPORTANT: Update this to your deployed Render backend URL
-const API_BASE_URL =
-  window.location.hostname === "localhost"
-    ? "http://localhost:8080/api" // For local development (if backend running locally)
-    : "https://e-shop-backend-5qmu.onrender.com/api"; // Your DEPLOYED Render backend URL
+const API_BASE_URL = "https://e-shop-backend-8ouh.onrender.com/api"; // Your DEPLOYED Render backend URL
 
 const PRODUCTS_API_URL = `${API_BASE_URL}/products`;
 const CART_API_ADD_URL = `${API_BASE_URL}/cart/add`;
