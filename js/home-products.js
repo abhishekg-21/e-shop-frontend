@@ -71,10 +71,14 @@ async function fetchHomeProducts() {
     const data = await response.json();
     console.log("HOME PRODUCTS: Products data received:", data);
 
-    if (Array.isArray(data.content)) {
+    // Check if data.content exists and is an array
+    if (data.content && Array.isArray(data.content)) {
       renderHomeProducts(data.content);
     } else {
-      console.warn("HOME PRODUCTS: Unexpected product data structure:", data);
+      console.warn(
+        "HOME PRODUCTS: Unexpected product data structure or empty content array:",
+        data
+      );
       renderHomeProducts([]); // Render empty if structure is unexpected
     }
   } catch (error) {
@@ -92,7 +96,16 @@ async function fetchHomeProducts() {
     retryBtn.addEventListener("click", () => {
       fetchHomeProducts(); // Retries the fetch
     });
-    homeProductsMessage.appendChild(retryBtn); // Append retry button to the message element
+    // Clear existing content and append the message with the retry button
+    if (homeProductsMessage) {
+      homeProductsMessage.innerHTML = ""; // Clear previous message
+      const p = document.createElement("p");
+      p.textContent = `Failed to load top products: ${error.message}. The server might be starting up (cold start). Please try again.`;
+      homeProductsMessage.appendChild(p);
+      homeProductsMessage.appendChild(retryBtn);
+      homeProductsMessage.classList.remove("d-none"); // Ensure it's visible
+      homeProductsMessage.classList.add("alert-danger"); // Ensure it's red
+    }
 
     renderHomeProducts([]); // Clear products on error
   } finally {
@@ -173,6 +186,7 @@ function showHomeLoadingState() {
   if (homeLoadingSpinner) homeLoadingSpinner.style.display = "block";
   if (dynamicProductList) dynamicProductList.style.display = "none";
   if (homeNoProductsMessage) homeNoProductsMessage.style.display = "none";
+  if (homeProductsMessage) homeProductsMessage.classList.add("d-none"); // Hide general message
 }
 
 /**
@@ -191,13 +205,13 @@ function renderHomeProducts(products) {
   dynamicProductList.innerHTML = ""; // Clear existing products
 
   if (!products || products.length === 0) {
-    homeNoProductsMessage.style.display = "block"; // Show "no products" message
-    dynamicProductList.style.display = "none"; // Hide grid
+    if (homeNoProductsMessage) homeNoProductsMessage.style.display = "block"; // Show "no products" message
+    if (dynamicProductList) dynamicProductList.style.display = "none"; // Hide grid
     return;
   }
 
-  homeNoProductsMessage.style.display = "none"; // Hide "no products" message
-  dynamicProductList.style.display = "flex"; // Show grid
+  if (homeNoProductsMessage) homeNoProductsMessage.style.display = "none"; // Hide "no products" message
+  if (dynamicProductList) dynamicProductList.style.display = "flex"; // Show grid
 
   products.forEach((product) => {
     const productCard = document.createElement("div");
@@ -215,13 +229,21 @@ function renderHomeProducts(products) {
                     class="card-img-top" />
                 <div class="card-body">
                     <h5 class="card-title">${product.name}</h5>
-                    <p class="price">$${product.price.toFixed(2)}</p>
+                    <p class="price">$${
+                      product.price ? product.price.toFixed(2) : "0.00"
+                    }</p>
                     <a href="product-detail.html?id=${
                       product.id
                     }" class="btn btn-primary w-100 mb-2">View Product</a>
                     <button class="btn btn-success w-100 add-to-cart-btn" data-product-id="${
                       product.id
-                    }">Add to Cart</button>
+                    }" ${product.stockQuantity > 0 ? "" : "disabled"}>
+                      ${
+                        product.stockQuantity > 0
+                          ? '<i class="fas fa-cart-plus me-2"></i>Add to Cart'
+                          : "Out of Stock"
+                      }
+                    </button>
                 </div>
             </div>
         `;
@@ -261,7 +283,12 @@ function attachAddToCartListeners() {
  * @returns {string|null} The JWT token or null if not found.
  */
 function getAuthToken() {
-  return localStorage.getItem("jwt_token");
+  // Ensure consistency with other JS files
+  const token = localStorage.getItem("jwt_token");
+  if (token && typeof token === "string" && token.trim() !== "") {
+    return token;
+  }
+  return null;
 }
 
 /**
@@ -286,9 +313,11 @@ function redirectToLogin(
  * which will be appended to "alert alert-" for Bootstrap styling.
  */
 function showMessage(element, message, type) {
-  element.textContent = message;
-  element.className = `alert alert-${type}`; // Applies Bootstrap alert classes (e.g., 'alert alert-danger')
-  element.style.display = "block"; // Make the element visible
+  if (element) {
+    element.textContent = message;
+    element.className = `alert alert-${type}`; // Applies Bootstrap alert classes (e.g., 'alert alert-danger')
+    element.style.display = "block"; // Make the element visible
+  }
 }
 
 /**
@@ -296,8 +325,10 @@ function showMessage(element, message, type) {
  * @param {HTMLElement} element The DOM element to hide.
  */
 function hideMessage(element) {
-  element.style.display = "none"; // Hide the element
-  element.textContent = ""; // Clear its text content
+  if (element) {
+    element.style.display = "none"; // Hide the element
+    element.textContent = ""; // Clear its text content
+  }
 }
 
 /**
